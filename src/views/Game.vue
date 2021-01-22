@@ -79,10 +79,10 @@ export default {
           const angle = xAngle * (x / sketch.width) + yAngle * (y / sketch.height);
           const myX = x + 20 * sketch.cos(2 * sketch.PI * this.t + angle);
           const myY = y + 20 * sketch.sin(2 * sketch.PI * this.t + angle);
-          sketch.ellipse(myX, myY, 10); // 绘制粒子
+          sketch.ellipse(myX, myY, 10);
     		}
       }
-      this.t = this.t + 0.01; // 更新时间
+      this.t = this.t + 0.01;
     },
   }
 };
