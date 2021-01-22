@@ -48,7 +48,7 @@
 	margin: 0;
 	padding: 0;
 	z-index: -500;
-	top: 70px;
+	top: 350px;
 }
 </style>
 
@@ -69,13 +69,13 @@ export default {
 			this.max_distance = sketch.dist(0, 0, sketch.width, sketch.height);
     },
     draw(sketch) {
-      sketch.background(163, 177, 138);
+      sketch.background(218, 215, 205);
 
-      for (let i = 0; i <= sketch.width; i += 20) {
-    		for (let j = 0; j <=sketch.height; j += 20) {
+      for (let i = 0; i <= sketch.width; i += 30) {
+    		for (let j = 0; j <=sketch.height; j += 30) {
       		let size = sketch.dist(sketch.mouseX, sketch.mouseY, i, j);
-					size = (size / this.max_distance) * 25;
-					sketch.fill(218, 215, 205);
+					size = (size / this.max_distance) * 50;
+					sketch.fill(163, 177, 138);
       		sketch.ellipse(i, j, size, size);
     		}
   		}
