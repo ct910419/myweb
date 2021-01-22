@@ -60,25 +60,29 @@ export default {
     "vue-p5": VueP5
   },
   data: () => ({
-		max_distance: 0,
+    max_distance: 0,
+    t: 0,
   }),
   methods: {
     setup(sketch) {
       sketch.createCanvas(1500, 1050);
       sketch.noStroke();
-			this.max_distance = sketch.dist(0, 0, sketch.width, sketch.height);
+			sketch.fill(163, 177, 138)
     },
     draw(sketch) {
       sketch.background(218, 215, 205);
 
-      for (let i = 0; i <= sketch.width; i += 30) {
-    		for (let j = 0; j <=sketch.height; j += 30) {
-      		let size = sketch.dist(sketch.mouseX, sketch.mouseY, i, j);
-					size = (size / this.max_distance) * 50;
-					sketch.fill(163, 177, 138);
-      		sketch.ellipse(i, j, size, size);
+      for (let x = 0; x <= sketch.width; x += 30) {
+    		for (let y = 0; y <=sketch.height; y += 30) {
+          const xAngle = sketch.map(sketch.mouseX, 0, sketch.width, -4 * sketch.PI, 4 * sketch.PI, true);
+          const yAngle = sketch.map(sketch.mouseY, 0, sketch.height, -4 * sketch.PI, 4 * sketch.PI, true);
+          const angle = xAngle * (x / sketch.width) + yAngle * (y / sketch.height);
+          const myX = x + 20 * sketch.cos(2 * sketch.PI * this.t + angle);
+          const myY = y + 20 * sketch.sin(2 * sketch.PI * this.t + angle);
+          sketch.ellipse(myX, myY, 10); // 绘制粒子
     		}
-  		}
+      }
+      this.t = this.t + 0.01; // 更新时间
     },
   }
 };
